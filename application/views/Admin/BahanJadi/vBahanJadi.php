@@ -59,7 +59,8 @@
 									foreach ($bj as $key => $value) {
 									?>
 										<tr>
-											<td><?= $value->nama_bj ?></td>
+											<td><img style="width: 50px;" src="<?= base_url('asset/produk/' . $value->gambar) ?>"><br>
+												<?= $value->nama_bj ?></td>
 											<td><span class="badge badge-success"><?= $value->keterangan ?></span></td>
 											<td><?= $value->deskripsi ?></td>
 											<td><?= $value->stok ?></td>
