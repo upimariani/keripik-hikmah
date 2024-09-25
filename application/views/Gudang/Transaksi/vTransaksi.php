@@ -77,11 +77,7 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Reseller/cTransaksi/bayar/' . $value->id_tranbj) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
 																<?php
 																} else if ($value->status == '1') {
 																?>
@@ -149,7 +145,8 @@
 																<?php
 																} else if ($value->status == '1') {
 																?>
-																	<span class="badge badge-warning">Menunggu Konfirmasi</span>
+																	<span class="badge badge-warning">Menunggu Konfirmasi</span><br>
+																	<a class="btn btn-warning" href="<?= base_url('Gudang/cTransaksi/konfirmasi/' . $value->id_tranbj) ?>"><i class="fas fa-hand-point-right"></i> Konfirmasi Pembayaran</a>
 																<?php
 																} else if ($value->status == '2') {
 																?>
@@ -217,8 +214,7 @@
 																<?php
 																} else if ($value->status == '2') {
 																?>
-																	<span class="badge badge-info">Pesanan Dikirim</span><br>
-																	<a class="btn btn-info" href="<?= base_url('Reseller/cTransaksi/pesanan_diterima/' . $value->id_tranbj) ?>"><i class="fas fa-cart-arrow-down"></i> Pesanan Diterima</a>
+																	<span class="badge badge-info">Pesanan Dikirim</span>
 																<?php
 																} else if ($value->status == '3') {
 																?>

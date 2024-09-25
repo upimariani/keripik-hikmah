@@ -45,7 +45,7 @@
 				} ?>
 				<form action="<?= base_url('cLogin/login') ?>" method="post">
 					<div class="input-group mb-3">
-						<input type="text" name="username" class="form-control" placeholder="Username" required>
+						<input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>

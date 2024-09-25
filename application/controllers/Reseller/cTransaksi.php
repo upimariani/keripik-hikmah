@@ -50,6 +50,15 @@ class cTransaksi extends CI_Controller
 			redirect('Reseller/cTransaksi');
 		}
 	}
+	public function pesanan_diterima($id)
+	{
+		$data = array(
+			'status' => '3'
+		);
+		$this->mTransaksi->update_status($id, $data);
+		$this->session->set_flashdata('success', 'Pesanan berhasil diterima!');
+		redirect('Reseller/cTransaksi');
+	}
 }
 
 /* End of file cTransaksi.php */

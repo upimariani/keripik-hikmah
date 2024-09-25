@@ -12,6 +12,12 @@ class mTransaksi extends CI_Model
 		$this->db->where('id_tranbj', $id);
 		$this->db->update('transaksi_bj', $data);
 	}
+
+	//gudang
+	public function transaksi()
+	{
+		return $this->db->query("SELECT * FROM `transaksi_bj` JOIN reseller ON transaksi_bj.id_reseller=reseller.id_reseller")->result();
+	}
 }
 
 /* End of file mTransaksi.php */
