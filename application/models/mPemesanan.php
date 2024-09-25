@@ -20,6 +20,12 @@ class mPemesanan extends CI_Model
 		$this->db->where('id_tranbb', $id);
 		$this->db->update('transaksi_bb', $data);
 	}
+
+	//supplier
+	public function pemesanan($id_user)
+	{
+		return $this->db->query("SELECT * FROM `transaksi_bb` JOIN user ON user.id_user=transaksi_bb.id_user WHERE transaksi_bb.id_user='" . $id_user . "'")->result();
+	}
 }
 
 /* End of file mPemesanan.php */

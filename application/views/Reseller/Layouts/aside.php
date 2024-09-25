@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-info elevation-4">
+<aside class="main-sidebar sidebar-light-danger elevation-4">
 	<!-- Brand Logo -->
 	<a href="index3.html" class="brand-link">
 		<img src="<?= base_url('asset/Admin/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -14,7 +14,7 @@
 				<img src="<?= base_url('asset/Admin/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Gudang</a>
+				<a href="#" class="d-block">Reseller</a>
 			</div>
 		</div>
 
@@ -36,40 +36,30 @@
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 				<li class="nav-item">
-					<a href="<?= base_url('Gudang/cDashboard') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cDashboard') {
+					<a href="<?= base_url('Reseller/cProfile') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Reseller' && $this->uri->segment(2) == 'cProfile') {
 																						echo 'active';
 																					}  ?>">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<i class="nav-icon fas fa-user"></i>
 						<p>
-							Dashboard
+							Profile
 						</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('Gudang/cPemesanan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cPemesanan') {
+					<a href="<?= base_url('Reseller/cKatalog') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Reseller' && $this->uri->segment(2) == 'cKatalog') {
 																						echo 'active';
 																					}  ?>">
 						<i class="nav-icon fas fa-shopping-basket"></i>
 						<p>
-							Pemesanan Bahan Baku
+							Katalog Produk
 						</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('Gudang/cBbKeluar') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cBbKeluar') {
-																						echo 'active';
-																					}  ?>">
+					<a href="<?= base_url('Reseller/cTransaksi') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Reseller' && $this->uri->segment(2) == 'cTransaksi') {
+																							echo 'active';
+																						}  ?>">
 						<i class="nav-icon fas fa-warehouse"></i>
-						<p>
-							Bahan Baku Keluar
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('Gudang/cTransaksi') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksi') {
-																						echo 'active';
-																					}  ?>">
-						<i class="nav-icon fas fa-cash-register"></i>
 						<p>
 							Transaksi Produk
 						</p>

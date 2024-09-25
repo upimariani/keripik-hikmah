@@ -9,7 +9,6 @@
 						Pemesanan Bahan Baku
 						<small>Supplier</small>
 					</h1>
-					<a href="<?= base_url('Gudang/cPemesanan/create') ?>" class="btn btn-info btn-block"><i class="fa fa-bell"></i>Tambah Pemesanan Bahan Baku</a>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -35,7 +34,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-sm-12">
-					<div class="card card-info card-outline card-tabs">
+					<div class="card card-warning card-outline card-tabs">
 						<div class="card-header p-0 pt-1 border-bottom-0">
 							<ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
 								<li class="nav-item">
@@ -78,11 +77,8 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Gudang/cPemesanan/bayar/' . $value->id_tranbb) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
+
 																<?php
 																} else if ($value->status == '1') {
 																?>
@@ -145,15 +141,14 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Gudang/cPemesanan/bayar/' . $value->id_tranbb) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
+
 																<?php
 																} else if ($value->status == '1') {
 																?>
-																	<span class="badge badge-warning">Menunggu Konfirmasi</span>
+																	<span class="badge badge-warning">Menunggu Konfirmasi</span><br>
+																	<a href="<?= base_url('asset/bayar-bb/' . $value->bukti_bayar) ?>">Bukti Pembayaran</a><br>
+																	<a href="<?= base_url('Supplier/cPemesanan/konfirmasi/' . $value->id_tranbb) ?>" class="btn btn-warning">Konfirmasi Pemesanan</a>
 																<?php
 																} else if ($value->status == '2') {
 																?>
@@ -212,11 +207,8 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Gudang/cPemesanan/bayar/' . $value->id_tranbb) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
+
 																<?php
 																} else if ($value->status == '1') {
 																?>
@@ -224,8 +216,7 @@
 																<?php
 																} else if ($value->status == '2') {
 																?>
-																	<span class="badge badge-info">Pesanan Dikirim</span><br>
-																	<a class="btn btn-info" href="<?= base_url('Gudang/cPemesanan/diterima/' . $value->id_tranbb) ?>">Pesanan Diterima</a>
+																	<span class="badge badge-info">Pesanan Dikirim</span>
 																<?php
 																} else if ($value->status == '3') {
 																?>
@@ -280,11 +271,8 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Gudang/cPemesanan/bayar/' . $value->id_tranbb) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
+
 																<?php
 																} else if ($value->status == '1') {
 																?>

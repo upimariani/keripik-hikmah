@@ -7,7 +7,7 @@
 		</div>
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-info">
+		<nav class="main-header navbar navbar-expand navbar-warning">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">

@@ -113,6 +113,26 @@ class cPemesanan extends CI_Controller
 			redirect('Gudang/cPemesanan');
 		}
 	}
+	public function diterima($id)
+	{
+		//memperbaharui stok gudang
+		$dt = $this->db->query("SELECT * FROM `transaksi_bb` JOIN detail_transaksibb ON transaksi_bb.id_tranbb=detail_transaksibb.id_tranbb JOIN bahan_baku ON bahan_baku.id_bb=detail_transaksibb.id_bb WHERE transaksi_bb.id_tranbb='" . $id . "'")->result();
+		foreach ($dt as $key => $value) {
+			$stok = array(
+				'stok' => $value->stok + $value->qty_bb
+			);
+			$this->db->where('id_bb', $value->id_bb);
+			$this->db->update('bahan_baku', $stok);
+		}
+
+
+		$data = array(
+			'status' => '3'
+		);
+		$this->mPemesanan->update_status($id, $data);
+		$this->session->set_flashdata('success', 'Pemesanan berhasil diterima!');
+		redirect('Gudang/cPemesanan');
+	}
 }
 
 /* End of file cPemesanan.php */

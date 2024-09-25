@@ -33,7 +33,7 @@
 				<!-- left column -->
 				<div class="col-md-5">
 					<!-- general form elements -->
-					<div class="card card-warning">
+					<div class="card card-info">
 						<div class="card-header">
 							<h3 class="card-title">Masukkan Bahan Baku</h3>
 						</div>
