@@ -56,8 +56,8 @@
 					<div class="card">
 						<div class="card-header p-2">
 							<ul class="nav nav-pills">
-								<li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-								<li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+								<li class="nav-item"><a class="nav-link btn-info active" href="#activity" data-toggle="tab">Chatting</a></li>
+								<li class="nav-item"><a class="nav-link btn-warning" href="#settings" data-toggle="tab">Profile</a></li>
 							</ul>
 						</div><!-- /.card-header -->
 						<div class="card-body">
@@ -65,26 +65,51 @@
 								<div class="active tab-pane" id="activity">
 									<!-- Post -->
 									<div class="post">
-										<div class="user-block">
-											<img class="img-circle img-bordered-sm" src="<?= base_url('asset/Admin/') ?>dist/img/user1-128x128.jpg" alt="user image">
-											<span class="username">
-												<a href="#">Jonathan Burke Jr.</a>
+										<?php
+										foreach ($chat as $key => $value) {
+											if ($value->reseller_send == '0') {
+										?>
+												<div class="user-block">
+													<img class="img-circle img-bordered-sm" src="<?= base_url('asset/Admin/') ?>dist/img/user1-128x128.jpg" alt="user image">
+													<span class="username">
+														<a href="#">Gudang</a>
 
-											</span>
-											<span class="description">Shared publicly - 7:30 PM today</span>
-										</div>
-										<!-- /.user-block -->
-										<p>
-											Lorem ipsum represents a long-held tradition for designers,
-											typographers and the like. Some people hate it and argue for
-											its demise, but others ignore the hate as they create awesome
-											tools to help create filler text for everyone from bacon lovers
-											to Charlie Sheen fans.
-										</p>
+													</span>
+													<span class="description"><?= $value->time ?></span>
+												</div>
+
+												<!-- /.user-block -->
+												<p>
+													<?= $value->gudang_send ?>
+												</p>
+												<hr>
+											<?php
+											} else {
+											?>
+												<div class="user-block">
+													<img class="img-circle img-bordered-sm" src="<?= base_url('asset/Admin/') ?>dist/img/user4-128x128.jpg" alt="user image">
+													<span class="username">
+														<a href="#"><?= $value->nama_reseller ?></a>
+
+													</span>
+													<span class="description"><?= $value->time ?></span>
+												</div>
+
+												<!-- /.user-block -->
+												<p>
+													<?= $value->reseller_send ?>
+												</p>
+												<hr>
+										<?php
+											}
+										}
+										?>
 
 
-
-										<input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+										<form action="<?= base_url('Reseller/cProfile/chat/' . $this->session->userdata('id_reseller')) ?>" method="POST">
+											<input class="form-control form-control-sm" name="pesan" type="text" placeholder="Type a message ..." required autofocus>
+											<button type="submit" class="btn btn-success btn-sm mt-2"><i class="fas fa-paper-plane"></i> Kirim</button>
+										</form>
 									</div>
 									<!-- /.post -->
 

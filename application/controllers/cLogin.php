@@ -28,7 +28,7 @@ class cLogin extends CI_Controller
 			} else if ($level == '2') {
 				redirect('Gudang/cDashboard');
 			} else if ($level == '3') {
-				redirect('Supplier/cDashoard');
+				redirect('Supplier/cPemesanan');
 			} else if ($level == '4') {
 				redirect('Pemilik/cDashboard');
 			}
