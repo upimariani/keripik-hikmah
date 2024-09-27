@@ -97,16 +97,17 @@
 																<?php
 																} ?>
 															</td>
-															<?php
-															// bahan baku yang dipesan
-															$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
-															foreach ($bj as $key => $value) {
-															?>
-																<td><?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)</td>
-															<?php
-															}
-															?>
-
+															<td>
+																<?php
+																// bahan baku yang dipesan
+																$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
+																foreach ($bj as $key => $value) {
+																?>
+																	<?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)
+																<?php
+																}
+																?>
+															</td>
 														</tr>
 												<?php
 													}
@@ -161,15 +162,17 @@
 																<?php
 																} ?>
 															</td>
-															<?php
-															// bahan baku yang dipesan
-															$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
-															foreach ($bj as $key => $value) {
-															?>
-																<td><?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)</td>
-															<?php
-															}
-															?>
+															<td>
+																<?php
+																// bahan baku yang dipesan
+																$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
+																foreach ($bj as $key => $value) {
+																?>
+																	<?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)
+																<?php
+																}
+																?>
+															</td>
 
 														</tr>
 												<?php
@@ -226,15 +229,17 @@
 																<?php
 																} ?>
 															</td>
-															<?php
-															// bahan baku yang dipesan
-															$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
-															foreach ($bj as $key => $value) {
-															?>
-																<td><?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)</td>
-															<?php
-															}
-															?>
+															<td>
+																<?php
+																// bahan baku yang dipesan
+																$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
+																foreach ($bj as $key => $value) {
+																?>
+																	<?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)
+																<?php
+																}
+																?>
+															</td>
 
 														</tr>
 												<?php
@@ -290,15 +295,17 @@
 																<?php
 																} ?>
 															</td>
-															<?php
-															// bahan baku yang dipesan
-															$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
-															foreach ($bj as $key => $value) {
-															?>
-																<td><?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)</td>
-															<?php
-															}
-															?>
+															<td>
+																<?php
+																// bahan baku yang dipesan
+																$bj = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
+																foreach ($bj as $key => $value) {
+																?>
+																	<?= $value->nama_bj ?> (<?= $value->qty_bj ?>x)
+																<?php
+																}
+																?>
+															</td>
 
 														</tr>
 												<?php

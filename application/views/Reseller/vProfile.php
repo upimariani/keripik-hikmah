@@ -14,6 +14,15 @@
 					</ol>
 				</div>
 			</div>
+			<?php if ($this->session->userdata('success')) {
+			?>
+				<div class="callout callout-success">
+					<h5>Sukses!</h5>
+
+					<p><?= $this->session->userdata('success') ?></p>
+				</div>
+			<?php
+			} ?>
 		</div><!-- /.container-fluid -->
 	</section>
 
@@ -30,20 +39,21 @@
 								<img class="profile-user-img img-fluid img-circle" src="<?= base_url('asset/Admin/') ?>dist/img/user4-128x128.jpg" alt="User profile picture">
 							</div>
 
-							<h3 class="profile-username text-center">Nina Mcintire</h3>
+							<h3 class="profile-username text-center"><?= $profile->nama_reseller ?></h3>
 
-							<p class="text-muted text-center">Software Engineer</p>
-
+							<p class="text-muted text-center">Reseller</p>
+							<?php
+							$jml_tran = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE id_reseller='" . $profile->id_reseller . "'")->row();
+							$total_tran = $this->db->query("SELECT SUM(total_pembayaran) as total FROM `transaksi_bj` WHERE id_reseller='" . $profile->id_reseller . "'")->row();
+							?>
 							<ul class="list-group list-group-unbordered mb-3">
 								<li class="list-group-item">
-									<b>Followers</b> <a class="float-right">1,322</a>
+									<b>Jumlah Transaksi</b> <a class="float-right"><?= number_format($jml_tran->jml) ?> x</a>
 								</li>
 								<li class="list-group-item">
-									<b>Following</b> <a class="float-right">543</a>
+									<b>Total Pembelian</b> <a class="float-right">Rp. <?= number_format($total_tran->total) ?></a>
 								</li>
-								<li class="list-group-item">
-									<b>Friends</b> <a class="float-right">13,287</a>
-								</li>
+
 							</ul>
 
 						</div>
@@ -116,49 +126,42 @@
 								</div>
 
 								<div class="tab-pane" id="settings">
-									<form class="form-horizontal">
+									<form action="<?= base_url('Reseller/cProfile/perbaharui/' . $profile->id_reseller) ?>" method="POST" class="form-horizontal">
 										<div class="form-group row">
-											<label for="inputName" class="col-sm-2 col-form-label">Name</label>
+											<label for="inputName" class="col-sm-2 col-form-label">Nama</label>
 											<div class="col-sm-10">
-												<input type="email" class="form-control" id="inputName" placeholder="Name">
+												<input type="text" value="<?= $profile->nama_reseller ?>" class="form-control" id="inputName" name="nama" placeholder="Nama" required>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+											<label for="inputEmail" class="col-sm-2 col-form-label">Alamat</label>
 											<div class="col-sm-10">
-												<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+												<input type="text" name="alamat" class="form-control" value="<?= $profile->alamat ?>" id="inputEmail" placeholder="Alamat" required>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+											<label for="inputName2" class="col-sm-2 col-form-label">Nomor Telepon</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="inputName2" placeholder="Name">
+												<input type="text" class="form-control" value="<?= $profile->no_hp ?>" id="inputName2" name="no_hp" placeholder="No Telepon" required>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+											<label for="inputName2" class="col-sm-2 col-form-label">Username</label>
 											<div class="col-sm-10">
-												<textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+												<input type="text" name="username" class="form-control" value="<?= $profile->username ?>" id="inputName2" placeholder="Username" required>
 											</div>
 										</div>
+
 										<div class="form-group row">
-											<label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+											<label for="inputName2" class="col-sm-2 col-form-label">Password</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+												<input type="text" name="password" class="form-control" value="<?= $profile->password ?>" id="inputName2" placeholder="Password" required>
 											</div>
+
 										</div>
 										<div class="form-group row">
 											<div class="offset-sm-2 col-sm-10">
-												<div class="checkbox">
-													<label>
-														<input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-													</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group row">
-											<div class="offset-sm-2 col-sm-10">
-												<button type="submit" class="btn btn-danger">Submit</button>
+												<button type="submit" class="btn btn-danger">Perbaharui</button>
 											</div>
 										</div>
 									</form>

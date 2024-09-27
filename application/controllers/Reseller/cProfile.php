@@ -13,7 +13,8 @@ class cProfile extends CI_Controller
 	public function index()
 	{
 		$data = array(
-			'chat' => $this->mChat->chat()
+			'chat' => $this->mChat->chat(),
+			'profile' => $this->db->query("SELECT * FROM `reseller` WHERE id_reseller='" . $this->session->userdata('id_reseller') . "'")->row()
 		);
 		$this->load->view('Reseller/Layouts/head');
 		$this->load->view('Reseller/Layouts/navbar');
@@ -30,6 +31,20 @@ class cProfile extends CI_Controller
 		);
 		$this->db->insert('chat', $data);
 		$this->session->set_flashdata('success', 'Pesan berhasil dikirim!');
+		redirect('Reseller/cProfile');
+	}
+	public function perbaharui($id)
+	{
+		$data = array(
+			'nama_reseller' => $this->input->post('nama'),
+			'alamat' => $this->input->post('alamat'),
+			'no_hp' => $this->input->post('no_hp'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		);
+		$this->db->where('id_reseller', $id);
+		$this->db->update('reseller', $data);
+		$this->session->set_flashdata('success', 'Data Reseller berhasil diperbaharui');
 		redirect('Reseller/cProfile');
 	}
 }
