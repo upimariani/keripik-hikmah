@@ -89,7 +89,113 @@
 				<!-- /.col -->
 			</div>
 			<!-- /.row -->
+			<div class="row">
+				<div class="col-6">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Informasi Bahan Baku</h3><br>
+							<small>Jika stok kurang dari 10 maka akan menerima notifikasi segera melakukan pemesanan!</small>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Nama Bahan Baku</th>
+										<th>Stok</th>
+										<th>Harga</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$bb = $this->db->query("SELECT * FROM `bahan_baku`")->result();
+									foreach ($bb as $key => $value) {
+									?>
+										<tr>
+											<td><?= $value->nama_bb ?> <span class="badge badge-warning"><?= $value->keterangan ?></span></td>
 
+											<td><?= $value->stok ?>
+												<?php
+												if ($value->stok <= 10) {
+												?>
+													<span class="badge badge-danger">Bahan Baku segera melakukan pemesanan!</span>
+												<?php
+												} else {
+												?>
+													<span class="badge badge-success">Stok Bahan Baku aman!</span>
+												<?php
+												}
+												?>
+											</td>
+											<td>Rp. <?= number_format($value->harga)  ?></td>
+										</tr>
+									<?php
+									}
+									?>
+
+
+								</tbody>
+
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+				<div class="col-6">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Informasi Produk Keripik Pedas Hikmah / Bahan Jadi</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example2" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Nama Produk</th>
+										<th>Stok</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$bj = $this->db->query("SELECT * FROM `bahan_jadi`")->result();
+									foreach ($bj as $key => $value) {
+									?>
+										<tr>
+											<td>
+												<?= $value->nama_bj ?> <span class="badge badge-success"><?= $value->keterangan ?></span></td>
+
+
+											<td><?= $value->stok ?>
+												<?php
+												if ($value->stok <= 10) {
+												?>
+													<span class="badge badge-danger">Segera melakukan update stok!</span>
+												<?php
+												} else {
+												?>
+													<span class="badge badge-success">Stok Aman!</span>
+												<?php
+												}
+												?>
+											</td>
+
+										</tr>
+									<?php
+									}
+									?>
+
+
+								</tbody>
+
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+			</div>
 
 		</div>
 		<!--/. container-fluid -->

@@ -57,25 +57,38 @@
 									<input type="text" name="harga" value="<?= $bb->harga ?>" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga">
 									<?= form_error('harga', '<small class="text-danger">', '</small>') ?>
 								</div>
-
+								<div class="form-group">
+									<label for="exampleInputEmail1">Nama Supplier</label>
+									<?php
+									$supplier = $this->db->query("SELECT * FROM `user` WHERE lev_user='3'")->result();
+									?>
+									<select class="form-control" name="supplier">
+										<option value="">Pilih Supplier</option>
+										<?php
+										foreach ($supplier as $key => $value) {
+										?>
+											<option value="<?= $value->id_user ?>" <?php if ($value->id_user == $bb->nm_supplier) {
+																						echo 'selected';
+																					} ?>><?= $value->nama_user ?></option>
+										<?php
+										}
+										?>
+									</select>
+									<?= form_error('supplier', '<small class="text-danger">', '</small>') ?>
+								</div>
 							</div>
-
-
-
 							<!-- /.card-body -->
-
 							<div class="card-footer">
 								<button type="submit" class="btn btn-app bg-success">
 									<i class="fas fa-save"></i> Save Perubahan
 								</button>
-								<a href="<?= base_url('Admin/cUser') ?>" class="btn btn-app bg-danger">
+								<a href="<?= base_url('Admin/cBahanBaku') ?>" class="btn btn-app bg-danger">
 									<i class="fas fa-backspace"></i> Kembali
 								</a>
 							</div>
 						</form>
 					</div>
 					<!-- /.card -->
-
 				</div>
 				<!--/.col (left) -->
 				<!-- right column -->

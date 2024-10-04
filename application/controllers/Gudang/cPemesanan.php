@@ -23,6 +23,13 @@ class cPemesanan extends CI_Controller
 		$this->load->view('Gudang/Pemesanan/vPemesanan', $data);
 		$this->load->view('Gudang/Layouts/footer');
 	}
+	public function get_bahanbaku()
+	{
+		$id_supplier = $this->input->post('id');
+
+		$data = $this->db->query("SELECT * FROM `bahan_baku` WHERE nm_supplier='" . $id_supplier . "'")->result();
+		echo json_encode($data);
+	}
 	public function create()
 	{
 		$this->form_validation->set_rules('bb', 'Bahan Baku', 'required');

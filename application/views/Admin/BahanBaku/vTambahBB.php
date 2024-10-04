@@ -40,7 +40,6 @@
 									<input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Nama Bahan Baku">
 									<?= form_error('nama', '<small class="text-danger">', '</small>') ?>
 								</div>
-
 								<div class="form-group">
 									<label for="exampleInputPassword1">Keterangan</label>
 									<input type="text" name="keterangan" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Keterangan">
@@ -57,13 +56,25 @@
 									<input type="text" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga">
 									<?= form_error('harga', '<small class="text-danger">', '</small>') ?>
 								</div>
-
+								<div class="form-group">
+									<label for="exampleInputEmail1">Nama Supplier</label>
+									<?php
+									$supplier = $this->db->query("SELECT * FROM `user` WHERE lev_user='3'")->result();
+									?>
+									<select class="form-control" name="supplier">
+										<option value="">Pilih Supplier</option>
+										<?php
+										foreach ($supplier as $key => $value) {
+										?>
+											<option value="<?= $value->id_user ?>"><?= $value->nama_user ?></option>
+										<?php
+										}
+										?>
+									</select>
+									<?= form_error('supplier', '<small class="text-danger">', '</small>') ?>
+								</div>
 							</div>
-
-
-
 							<!-- /.card-body -->
-
 							<div class="card-footer">
 								<button type="submit" class="btn btn-app bg-success">
 									<i class="fas fa-save"></i> Save
@@ -75,7 +86,6 @@
 						</form>
 					</div>
 					<!-- /.card -->
-
 				</div>
 				<!--/.col (left) -->
 				<!-- right column -->

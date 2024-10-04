@@ -96,6 +96,35 @@
 
 	});
 </script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#supplier').change(function() {
+			var id = $(this).val();
+			$.ajax({
+				url: "<?php echo site_url('Gudang/cPemesanan/get_bahanbaku'); ?>",
+				method: "POST",
+				data: {
+					id: id
+				},
+				async: true,
+				dataType: 'json',
+				success: function(data) {
+
+					var html = '';
+					var i;
+					for (i = 0; i < data.length; i++) {
+						html += '<option data-nama=' + data[i].nama_bb + ' data-harga=' + data[i].harga + ' data-stok=' + data[i].stok + ' value=' + data[i].id_bb + '>' + data[i].nama_bb + '</option>';
+					}
+					$('#bahanbaku').html(html);
+
+				}
+			});
+			return false;
+		});
+
+	});
+</script>
 </body>
 
 </html>

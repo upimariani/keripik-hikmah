@@ -13,7 +13,7 @@ class cPemesanan extends CI_Controller
 	public function index()
 	{
 		$data = array(
-			'pemesanan' => $this->mPemesanan->pemesanan(4)
+			'pemesanan' => $this->mPemesanan->pemesanan($this->session->userdata('id_user'))
 		);
 		$this->load->view('Supplier/Layouts/head');
 		$this->load->view('Supplier/Layouts/navbar');

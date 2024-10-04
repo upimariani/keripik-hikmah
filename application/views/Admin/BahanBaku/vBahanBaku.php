@@ -58,7 +58,7 @@
 									foreach ($bb as $key => $value) {
 									?>
 										<tr>
-											<td><?= $value->nama_bb ?></td>
+											<td><?= $value->nama_bb ?><br><small>Supplier : <strong><?= $value->nama_user ?></strong></small></td>
 											<td><span class="badge badge-success"><?= $value->keterangan ?></span></td>
 											<td><?= $value->stok ?></td>
 											<td>Rp. <?= number_format($value->harga)  ?></td>

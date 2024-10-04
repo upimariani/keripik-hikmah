@@ -11,6 +11,7 @@ class mBahanBaku extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('bahan_baku');
+		$this->db->join('user', 'bahan_baku.nm_supplier = user.id_user', 'left');
 		return $this->db->get()->result();
 	}
 	public function get_data($id)

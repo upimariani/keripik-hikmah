@@ -44,7 +44,7 @@ class cKatalog extends CI_Controller
 	public function selesai()
 	{
 		$data = array(
-			'id_reseller' => '1',
+			'id_reseller' => $this->session->userdata('id_reseller'),
 			'tgl_transaksi' => date('Y-m-d'),
 			'total_pembayaran' => $this->cart->total(),
 			'status' => '0',

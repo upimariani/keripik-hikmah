@@ -27,6 +27,7 @@ class cBahanBaku extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 		$this->form_validation->set_rules('stok', 'Stok', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
+		$this->form_validation->set_rules('supplier', 'Supplier', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 
@@ -40,7 +41,8 @@ class cBahanBaku extends CI_Controller
 				'nama_bb' => $this->input->post('nama'),
 				'keterangan' => $this->input->post('keterangan'),
 				'stok' => $this->input->post('stok'),
-				'harga' => $this->input->post('harga')
+				'harga' => $this->input->post('harga'),
+				'nm_supplier' => $this->input->post('supplier')
 			);
 			$this->mBahanBaku->insert($data);
 			$this->session->set_flashdata('success', 'Data Bahan Baku berhasil disimpan!');
@@ -53,6 +55,7 @@ class cBahanBaku extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 		$this->form_validation->set_rules('stok', 'Stok', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
+		$this->form_validation->set_rules('supplier', 'Supplier', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
@@ -68,7 +71,8 @@ class cBahanBaku extends CI_Controller
 				'nama_bb' => $this->input->post('nama'),
 				'keterangan' => $this->input->post('keterangan'),
 				'stok' => $this->input->post('stok'),
-				'harga' => $this->input->post('harga')
+				'harga' => $this->input->post('harga'),
+				'nm_supplier' => $this->input->post('supplier')
 			);
 			$this->mBahanBaku->update($id, $data);
 			$this->session->set_flashdata('success', 'Data Bahan Baku berhasil diperbaharui!');

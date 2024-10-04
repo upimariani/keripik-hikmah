@@ -42,16 +42,25 @@
 						<form action="<?= base_url('Gudang/cPemesanan/create') ?>" method="POST">
 							<div class="card-body">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Nama Bahan Baku</label>
-									<select id="bahanbaku" class="form-control" name="bb">
-										<option value="">Pilih Bahan Baku</option>
+									<label for="exampleInputEmail1">Supplier</label>
+									<select id="supplier" class="form-control" name="supplier">
+										<option value="">Pilih Supplier</option>
 										<?php
-										foreach ($bb as $key => $value) {
+										$supplier = $this->db->query("SELECT * FROM `user` WHERE lev_user='3'")->result();
+										foreach ($supplier as $key => $value) {
 										?>
-											<option data-nama="<?= $value->nama_bb ?>" data-harga="<?= $value->harga ?>" data-stok="<?= $value->stok ?>" value="<?= $value->id_bb ?>"><?= $value->nama_bb ?></option>
+											<option value="<?= $value->id_user ?>"><?= $value->nama_user ?></option>
 										<?php
 										}
 										?>
+									</select>
+									<?= form_error('supplier', '<small class="text-danger">', '</small>') ?>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Nama Bahan Baku</label>
+									<select id="bahanbaku" class="form-control" name="bb">
+										<option value="">Pilih Bahan Baku</option>
+
 									</select>
 									<?= form_error('bb', '<small class="text-danger">', '</small>') ?>
 								</div>
