@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2024 at 03:28 AM
+-- Generation Time: Oct 04, 2024 at 08:21 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -33,29 +33,30 @@ CREATE TABLE `bahan_baku` (
   `nama_bb` varchar(125) NOT NULL,
   `keterangan` varchar(125) NOT NULL,
   `stok` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `nm_supplier` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bahan_baku`
 --
 
-INSERT INTO `bahan_baku` (`id_bb`, `nama_bb`, `keterangan`, `stok`, `harga`) VALUES
-(1, 'Singkong', 'kg', 10, 10000),
-(2, 'Bumbu Balado', 'bungkus', 10, 5000),
-(3, 'Bumbu Asin', 'bungkus', 10, 5000),
-(4, 'Bumbu Cabe', 'bungkus', 10, 5000),
-(5, 'Bumbu Keju Bubuk', 'bungkus', 10, 7000),
-(6, 'Plastik Ukuran Ball', 'pax', 10, 23000),
-(7, 'Plastik Ukuran 1 kg', 'pax', 10, 25000),
-(8, 'Plastik Ukuran 1/4 kg', 'pax', 10, 25000),
-(9, 'Plastik Ukuran Kecil', 'pax', 10, 21000),
-(10, 'Minyak', 'liter', 10, 12000),
-(11, 'Pisang', 'kg', 10, 9000),
-(12, 'Cabe ', 'kg', 10, 26000),
-(13, 'Garam', 'bungkus', 10, 2000),
-(14, 'Bubuk Coklat', 'kg', 10, 21000),
-(15, 'Tepung Terigu', 'kg', 10, 11000);
+INSERT INTO `bahan_baku` (`id_bb`, `nama_bb`, `keterangan`, `stok`, `harga`, `nm_supplier`) VALUES
+(1, 'Singkong', 'kg', 3, 10000, '4'),
+(2, 'Bumbu Balado', 'bungkus', 15, 5000, '4'),
+(3, 'Bumbu Asin', 'bungkus', 15, 5000, '4'),
+(4, 'Bumbu Cabe', 'bungkus', 15, 5000, '4'),
+(5, 'Bumbu Keju Bubuk', 'bungkus', 10, 7000, '4'),
+(6, 'Plastik Ukuran Ball', 'pax', 10, 23000, '4'),
+(7, 'Plastik Ukuran 1 kg', 'pax', 10, 25000, '4'),
+(8, 'Plastik Ukuran 1/4 kg', 'pax', 10, 25000, '4'),
+(9, 'Plastik Ukuran Kecil', 'pax', 10, 21000, '4'),
+(10, 'Minyak', 'liter', 10, 12000, '4'),
+(11, 'Pisang', 'kg', 10, 9000, '4'),
+(12, 'Cabe ', 'kg', 10, 26000, '4'),
+(13, 'Garam', 'bungkus', 10, 2000, '4'),
+(14, 'Bubuk Coklat', 'kg', 10, 21000, '4'),
+(15, 'Tepung Terigu', 'kg', 10, 11000, '4');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,9 @@ CREATE TABLE `bb_keluar` (
 --
 
 INSERT INTO `bb_keluar` (`id_bb_keluar`, `id_bb`, `tgl_keluar`, `qty_keluar`) VALUES
-(1, 1, '2024-09-23', 3);
+(1, 1, '2024-09-23', 3),
+(3, 1, '2024-09-27', 2),
+(4, 1, '2024-10-01', 5);
 
 -- --------------------------------------------------------
 
@@ -120,17 +123,26 @@ CREATE TABLE `chat` (
   `id_reseller` int(11) NOT NULL,
   `reseller_send` text NOT NULL DEFAULT '0',
   `gudang_send` text NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `stat_read` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `chat`
 --
 
-INSERT INTO `chat` (`id_chatting`, `id_user`, `id_reseller`, `reseller_send`, `gudang_send`, `time`) VALUES
-(3, 2, 1, 'halo gudang, mau bertanya, apakah produk keripik ready?', '0', '2024-09-26 12:41:52'),
-(4, 2, 1, '0', 'halo', '2024-09-26 13:14:27'),
-(5, 2, 1, '0', 'ready kak', '2024-09-26 13:15:03');
+INSERT INTO `chat` (`id_chatting`, `id_user`, `id_reseller`, `reseller_send`, `gudang_send`, `time`, `stat_read`) VALUES
+(3, 2, 1, 'halo gudang, mau bertanya, apakah produk keripik ready?', '0', '2024-10-04 04:02:58', 1),
+(4, 2, 1, '0', 'halo', '2024-10-04 04:02:58', 1),
+(5, 2, 1, '0', 'ready kak', '2024-10-04 04:02:58', 1),
+(6, 2, 2, 'haloo kak', '0', '2024-10-04 04:03:02', 1),
+(7, 2, 2, 'apakah basreng pedas ready?', '0', '2024-10-04 04:03:02', 1),
+(8, 2, 2, '0', 'ready kak ...', '2024-10-04 04:03:02', 1),
+(9, 4, 3, '0', 'supplier', '2024-10-04 04:16:41', 0),
+(10, 4, 3, 'iya gudang', '0', '2024-10-04 04:24:11', 0),
+(11, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-04 04:36:48', 0),
+(12, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-04 04:37:03', 0),
+(13, 2, 1, 'terimakasih', '0', '2024-10-04 04:42:20', 0);
 
 -- --------------------------------------------------------
 
@@ -152,7 +164,13 @@ CREATE TABLE `detail_transaksibb` (
 INSERT INTO `detail_transaksibb` (`id_detailbb`, `id_tranbb`, `id_bb`, `qty_bb`) VALUES
 (1, 1, 1, 3),
 (2, 2, 1, 20),
-(3, 3, 1, 20);
+(3, 3, 1, 20),
+(4, 4, 3, 4),
+(5, 4, 2, 8),
+(6, 4, 4, 20),
+(7, 5, 2, 5),
+(8, 5, 3, 5),
+(9, 5, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -173,7 +191,14 @@ CREATE TABLE `detail_transaksibj` (
 
 INSERT INTO `detail_transaksibj` (`id_detailbj`, `id_tranbj`, `id_bj`, `qty_bj`) VALUES
 (1, 1, 2, 1),
-(2, 2, 2, 1);
+(2, 2, 2, 1),
+(3, 3, 1, 1),
+(4, 3, 5, 1),
+(5, 4, 2, 2),
+(6, 4, 3, 1),
+(7, 4, 8, 1),
+(8, 4, 9, 1),
+(9, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +220,8 @@ CREATE TABLE `reseller` (
 --
 
 INSERT INTO `reseller` (`id_reseller`, `nama_reseller`, `alamat`, `no_hp`, `username`, `password`) VALUES
-(1, 'Dini', 'Kuningan', '089883746721', 'reseller', 'reseller');
+(1, 'Dini Sa', 'Kuningan', '089987654543', 'dini', 'dini'),
+(2, 'Kiki', 'Kuningan, Jawa Barat', '089987654543', 'kiki', 'kiki');
 
 -- --------------------------------------------------------
 
@@ -220,8 +246,10 @@ CREATE TABLE `transaksi_bb` (
 
 INSERT INTO `transaksi_bb` (`id_tranbb`, `id_user`, `tgl_transaksi`, `total_pembayaran`, `status`, `pembayaran`, `time_update`, `bukti_bayar`) VALUES
 (1, 4, '2024-09-23', 30000, 3, 1, '2024-09-24 11:49:00', 'download.jpeg'),
-(2, 4, '2024-09-25', 200000, 0, 0, '2024-09-25 09:06:54', '0'),
-(3, 4, '2024-09-25', 200000, 0, 0, '2024-09-25 09:07:14', '0');
+(2, 5, '2024-09-25', 200000, 0, 0, '2024-10-04 03:53:33', '0'),
+(3, 4, '2024-09-25', 200000, 0, 0, '2024-09-25 09:07:14', '0'),
+(4, 4, '2024-09-27', 160000, 1, 1, '2024-09-27 01:31:09', 'download1.jpeg'),
+(5, 4, '2024-10-01', 75000, 3, 1, '2024-10-01 08:53:14', 'download2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -244,8 +272,11 @@ CREATE TABLE `transaksi_bj` (
 --
 
 INSERT INTO `transaksi_bj` (`id_tranbj`, `id_reseller`, `tgl_transaksi`, `total_pembayaran`, `status`, `payment`, `alamat_pengiriman`) VALUES
-(1, 1, '2024-09-24', 10000, 1, 'download.jpeg', ''),
-(2, 1, '2024-09-25', 10000, 3, 'download1.jpeg', '');
+(1, 1, '2024-09-24', 10000, 2, 'download.jpeg', ''),
+(2, 1, '2024-09-25', 10000, 3, 'download1.jpeg', ''),
+(3, 1, '2024-09-27', 22000, 0, '0', ''),
+(4, 2, '2024-10-01', 50000, 3, 'download2.jpeg', ''),
+(5, 2, '2024-10-01', 10000, 0, '0', '');
 
 -- --------------------------------------------------------
 
@@ -269,7 +300,8 @@ INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `lev_user`) 
 (1, 'Admin', 'admin', 'admin', 1),
 (2, 'Pemilik', 'pemilik', 'pemilik', 4),
 (3, 'Gudang', 'gudang', 'gudang', 2),
-(4, 'Supplier 1', 'supplier', 'supplier', 3);
+(4, 'Supplier 1', 'supplier', 'supplier', 3),
+(5, 'Supplier 2', 'supplier2', 'supplier2', 3);
 
 --
 -- Indexes for dumped tables
@@ -343,7 +375,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
-  MODIFY `id_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `bahan_jadi`
@@ -355,49 +387,49 @@ ALTER TABLE `bahan_jadi`
 -- AUTO_INCREMENT for table `bb_keluar`
 --
 ALTER TABLE `bb_keluar`
-  MODIFY `id_bb_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bb_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `detail_transaksibb`
 --
 ALTER TABLE `detail_transaksibb`
-  MODIFY `id_detailbb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detailbb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `detail_transaksibj`
 --
 ALTER TABLE `detail_transaksibj`
-  MODIFY `id_detailbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detailbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `reseller`
 --
 ALTER TABLE `reseller`
-  MODIFY `id_reseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_reseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transaksi_bb`
 --
 ALTER TABLE `transaksi_bb`
-  MODIFY `id_tranbb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tranbb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transaksi_bj`
 --
 ALTER TABLE `transaksi_bj`
-  MODIFY `id_tranbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tranbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

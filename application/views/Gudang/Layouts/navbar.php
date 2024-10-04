@@ -19,8 +19,9 @@
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
 				<?php
+				//notifikasi chat
+				$notif = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chat` WHERE stat_read='0' AND gudang_send = '0' AND id_user='2'")->row();
 				//chatting reseller
-				$jml = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chat` GROUP BY id_reseller")->row();
 				$dt = $this->db->query("SELECT * FROM `chat` JOIN user ON user.id_user=chat.id_user JOIN reseller ON reseller.id_reseller=chat.id_reseller GROUP BY reseller.id_reseller")->result();
 				if ($dt) {
 				?>
@@ -28,7 +29,9 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link" data-toggle="dropdown" href="#">
 							<i class="far fa-comments"></i>
-							<span class="badge badge-danger navbar-badge"><?= $jml->jml ?></span>
+							<span class="badge badge-danger navbar-badge"><?php if ($notif->jml != 0) {
+																				echo $notif->jml;
+																			} ?></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 							<?php

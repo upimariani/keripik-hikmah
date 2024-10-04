@@ -35,7 +35,16 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
+				<li class="nav-item">
+					<a href="<?= base_url('Supplier/cPesan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cPesan') {
+																						echo 'active';
+																					}  ?>">
+						<i class="nav-icon far fa-comment"></i>
+						<p>
+							Pesan
+						</p>
+					</a>
+				</li>
 				<li class="nav-item">
 					<a href="<?= base_url('Supplier/cPemesanan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cPemesanan') {
 																							echo 'active';

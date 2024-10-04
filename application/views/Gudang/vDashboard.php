@@ -90,7 +90,7 @@
 			</div>
 			<!-- /.row -->
 			<div class="row">
-				<div class="col-6">
+				<div class="col-5">
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">Informasi Bahan Baku</h3><br>
@@ -103,7 +103,6 @@
 									<tr>
 										<th>Nama Bahan Baku</th>
 										<th>Stok</th>
-										<th>Harga</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -118,7 +117,7 @@
 												<?php
 												if ($value->stok <= 10) {
 												?>
-													<span class="badge badge-danger">Bahan Baku segera melakukan pemesanan!</span>
+													<span class="badge badge-danger">Segera melakukan pemesanan!</span>
 												<?php
 												} else {
 												?>
@@ -127,7 +126,6 @@
 												}
 												?>
 											</td>
-											<td>Rp. <?= number_format($value->harga)  ?></td>
 										</tr>
 									<?php
 									}
@@ -140,7 +138,7 @@
 					<!-- /.card -->
 				</div>
 				<!-- /.col -->
-				<div class="col-6">
+				<div class="col-4">
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">Informasi Produk Keripik Pedas Hikmah / Bahan Jadi</h3>
@@ -188,6 +186,47 @@
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Chatting Supplier</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Nama User</th>
+										<th>Level User</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$user = $this->db->query("SELECT * FROM `user` WHERE lev_user='3'")->result();
+									foreach ($user as $key => $value) {
+									?>
+										<tr>
+											<td><?= $value->nama_user ?></td>
+											<td>
+												<a href="<?= base_url('Gudang/cDashboard/chat_supplier/' . $value->id_user) ?>">
+													<span class="badge badge-danger">View</span>
+												</a>
+											</td>
+
+										</tr>
+									<?php
+									}
+									?>
+
+
+								</tbody>
+
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
 				</div>
 			</div>
 
