@@ -22,18 +22,23 @@
 									<div class="modal-body">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Nama Bahan Baku</label>
-											<select class="form-control" name="bb" required>
+											<select class="form-control" name="bb" id="bb_keluar" required>
 												<option value="">Pilih Bahan Baku</option>
 												<?php
 												foreach ($bb as $key => $value) {
 													if ($value->stok != '0') {
 												?>
-														<option value="<?= $value->id_bb ?>"><?= $value->nama_bb ?> | Stok. <?= $value->stok ?></option>
+														<option data-stok="<?= $value->stok ?>" value="<?= $value->id_bb ?>"><?= $value->nama_bb ?> | Stok. <?= $value->stok ?></option>
 												<?php
 													}
 												}
 												?>
 											</select>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">Quantity Tersedia</label>
+											<input type="text" name="qty_tersedia" class="stok form-control" readonly>
+
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">Tanggal Keluar</label>
@@ -74,7 +79,15 @@
 				</div>
 			<?php
 			} ?>
+			<?php if ($this->session->userdata('error')) {
+			?>
+				<div class="callout callout-danger">
+					<h5>Gagal!</h5>
 
+					<p><?= $this->session->userdata('error') ?></p>
+				</div>
+			<?php
+			} ?>
 		</div><!-- /.container-fluid -->
 
 	</section>
@@ -159,9 +172,9 @@ foreach ($bb_keluar as $key => $value) {
 								foreach ($bb as $key => $item) {
 									if ($item->stok != '0') {
 								?>
-										<option value="<?= $item->id_bb ?>" <?php if ($value->id_bb == $item->id_bb) {
-																				echo 'selected';
-																			} ?>><?= $item->nama_bb ?> | Stok. <?= $item->stok ?></option>
+										<option data-stok="<?= $item->stok ?>" value="<?= $item->id_bb ?>" <?php if ($value->id_bb == $item->id_bb) {
+																												echo 'selected';
+																											} ?>><?= $item->nama_bb ?> | Stok. <?= $item->stok ?></option>
 								<?php
 									}
 								}

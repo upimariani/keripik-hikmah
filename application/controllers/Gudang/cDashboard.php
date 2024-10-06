@@ -54,6 +54,13 @@ class cDashboard extends CI_Controller
 	//chatting supplier
 	public function chat_supplier($id)
 	{
+		$dt_stat = array(
+			'stat_read' => '1'
+		);
+		$this->db->where('id_user', $id);
+		$this->db->update('chat', $dt_stat);
+
+
 		$data = array(
 			'chat' => $this->mChat->chat_supplier($id),
 			'id_user' => $id

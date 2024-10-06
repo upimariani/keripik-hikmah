@@ -83,6 +83,15 @@
 </script>
 <script>
 	console.log = function() {}
+	$("#bb_keluar").on('change', function() {
+
+		$(".stok").html($(this).find(':selected').attr('data-stok'));
+		$(".stok").val($(this).find(':selected').attr('data-stok'));
+
+	});
+</script>
+<script>
+	console.log = function() {}
 	$("#bahanbaku").on('change', function() {
 
 		$(".nama").html($(this).find(':selected').attr('data-nama'));

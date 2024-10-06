@@ -6,6 +6,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1>Katalog Produk<strong> Keripik Pedas Hikmah</strong></h1>
+					<small class="text-danger">Jika pembelian produk lebih dari 100 kg maka, harga dikurangi 50% dari harga asli! Dipotong dari total pembelian</small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -65,11 +66,19 @@
 										</div>
 									</div>
 									<div class="card-footer">
-										<div class="text-right">
-											<button type="submit" class="btn btn-sm btn-info">
-												<i class="fas fa-cart-plus"></i> Add To Cart
-											</button>
+										<div class="row">
+											<div class="col-lg-6">
+												<input type="text" name="qty" class="form-control" placeholder="Masukkan Quantity" required>
+											</div>
+											<div class="col-lg-6 text-right">
+												<button type="submit" class="btn btn-sm btn-info">
+													<i class="fas fa-cart-plus"></i> Add To Cart
+												</button>
+											</div>
 										</div>
+
+
+
 									</div>
 								</div>
 							</form>

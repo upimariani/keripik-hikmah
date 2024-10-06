@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2024 at 08:21 AM
+-- Generation Time: Oct 06, 2024 at 12:15 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -138,11 +138,11 @@ INSERT INTO `chat` (`id_chatting`, `id_user`, `id_reseller`, `reseller_send`, `g
 (6, 2, 2, 'haloo kak', '0', '2024-10-04 04:03:02', 1),
 (7, 2, 2, 'apakah basreng pedas ready?', '0', '2024-10-04 04:03:02', 1),
 (8, 2, 2, '0', 'ready kak ...', '2024-10-04 04:03:02', 1),
-(9, 4, 3, '0', 'supplier', '2024-10-04 04:16:41', 0),
-(10, 4, 3, 'iya gudang', '0', '2024-10-04 04:24:11', 0),
-(11, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-04 04:36:48', 0),
-(12, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-04 04:37:03', 0),
-(13, 2, 1, 'terimakasih', '0', '2024-10-04 04:42:20', 0);
+(9, 4, 3, '0', 'supplier', '2024-10-06 10:11:49', 1),
+(10, 4, 3, 'iya gudang', '0', '2024-10-06 10:11:49', 1),
+(11, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-06 10:11:49', 1),
+(12, 4, 3, 'ada yang bisa di bantu?', '0', '2024-10-06 10:11:49', 1),
+(13, 2, 1, 'terimakasih', '0', '2024-10-06 10:05:47', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,9 @@ INSERT INTO `detail_transaksibj` (`id_detailbj`, `id_tranbj`, `id_bj`, `qty_bj`)
 (6, 4, 3, 1),
 (7, 4, 8, 1),
 (8, 4, 9, 1),
-(9, 5, 1, 1);
+(9, 5, 1, 1),
+(10, 6, 1, 100),
+(11, 6, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -263,20 +265,23 @@ CREATE TABLE `transaksi_bj` (
   `tgl_transaksi` varchar(15) NOT NULL,
   `total_pembayaran` int(11) NOT NULL,
   `status` int(11) NOT NULL,
+  `stat_selesai` int(11) NOT NULL,
   `payment` text NOT NULL,
-  `alamat_pengiriman` text NOT NULL
+  `alamat_pengiriman` text NOT NULL,
+  `stat_res` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi_bj`
 --
 
-INSERT INTO `transaksi_bj` (`id_tranbj`, `id_reseller`, `tgl_transaksi`, `total_pembayaran`, `status`, `payment`, `alamat_pengiriman`) VALUES
-(1, 1, '2024-09-24', 10000, 2, 'download.jpeg', ''),
-(2, 1, '2024-09-25', 10000, 3, 'download1.jpeg', ''),
-(3, 1, '2024-09-27', 22000, 0, '0', ''),
-(4, 2, '2024-10-01', 50000, 3, 'download2.jpeg', ''),
-(5, 2, '2024-10-01', 10000, 0, '0', '');
+INSERT INTO `transaksi_bj` (`id_tranbj`, `id_reseller`, `tgl_transaksi`, `total_pembayaran`, `status`, `stat_selesai`, `payment`, `alamat_pengiriman`, `stat_res`) VALUES
+(1, 1, '2024-09-24', 10000, 3, 1, 'download.jpeg', '', 1),
+(2, 1, '2024-09-25', 10000, 3, 1, 'download1.jpeg', '', 1),
+(3, 1, '2024-09-27', 22000, 0, 0, '0', '', 0),
+(4, 2, '2024-10-01', 50000, 3, 1, 'download2.jpeg', '', 0),
+(5, 2, '2024-10-01', 10000, 0, 0, '0', '', 0),
+(6, 1, '2024-10-06', 700000, 0, 0, '0', '', 0);
 
 -- --------------------------------------------------------
 
@@ -405,7 +410,7 @@ ALTER TABLE `detail_transaksibb`
 -- AUTO_INCREMENT for table `detail_transaksibj`
 --
 ALTER TABLE `detail_transaksibj`
-  MODIFY `id_detailbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detailbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reseller`
@@ -423,7 +428,7 @@ ALTER TABLE `transaksi_bb`
 -- AUTO_INCREMENT for table `transaksi_bj`
 --
 ALTER TABLE `transaksi_bj`
-  MODIFY `id_tranbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tranbj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -24,6 +24,7 @@
 				//chatting reseller
 				$dt = $this->db->query("SELECT * FROM `chat` JOIN user ON user.id_user=chat.id_user JOIN reseller ON reseller.id_reseller=chat.id_reseller GROUP BY reseller.id_reseller")->result();
 				if ($dt) {
+
 				?>
 					<!-- Messages Dropdown Menu -->
 					<li class="nav-item dropdown">
@@ -36,14 +37,25 @@
 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 							<?php
 							foreach ($dt as $key => $value) {
+								$dt_notif = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chat` WHERE stat_read='0' AND gudang_send = '0' AND id_user='2' AND id_reseller='" . $value->id_reseller . "'")->row();
 							?>
+
 								<a href="<?= base_url('Gudang/cDashboard/chat/' . $value->id_reseller) ?>" class="dropdown-item">
 									<!-- Message Start -->
 									<div class="media">
 										<div class="media-body">
 											<h3 class="dropdown-item-title">
 												<?= $value->nama_reseller ?>
-												<span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+												<?php
+												if ($dt_notif->jml != 0) {
+												?>
+													<span class="float-right text-sm text-danger">
+														<i class="far fa-comment-dots"><?= $dt_notif->jml ?></i>
+													</span>
+												<?php
+												}
+												?>
+
 											</h3>
 											<p class="text-sm"><?= $value->no_hp ?></p>
 											<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> <?= $value->time ?></p>

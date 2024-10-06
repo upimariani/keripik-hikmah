@@ -39,10 +39,10 @@
 							<ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
 								<?php
 								//notifikasi
-								$belum_bayar = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='0'")->row();
-								$menunggu = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='1'")->row();
-								$dikirim = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='2'")->row();
-								$selesai = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='3'")->row();
+								$belum_bayar = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='0' AND id_reseller='" . $this->session->userdata('id_reseller') . "'")->row();
+								$menunggu = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='1' AND id_reseller='" . $this->session->userdata('id_reseller') . "'")->row();
+								$dikirim = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='2' AND id_reseller='" . $this->session->userdata('id_reseller') . "'")->row();
+								$selesai = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='3' AND id_reseller='" . $this->session->userdata('id_reseller') . "' AND stat_res='0'")->row();
 								?>
 								<li class="nav-item">
 									<a class="nav-link active btn-danger" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Pesanan Belum Bayar <span class="badge badge-warning"><?= $belum_bayar->jml ?></span></a>
@@ -87,6 +87,8 @@
 																	<?= form_open_multipart('Reseller/cTransaksi/bayar/' . $value->id_tranbj) ?>
 																	<span class="badge badge-danger">Belum Bayar</span>
 																	<input class="form-control" name="gambar" type="file" required>
+																	<p>BRI : 4329012 <br>
+																		Atas Nama : Keripik Hikmah Pedas</p>
 																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
 																	</form>
 																<?php
@@ -261,6 +263,15 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
+									<?php
+									$data = array(
+										'stat_res' => '1'
+									);
+									$this->db->where('status=3');
+									$this->db->where('id_reseller', $this->session->userdata('id_reseller'));
+									$this->db->update('transaksi_bj', $data);
+
+									?>
 									<div class="card-body">
 										<table class="example1 table table-bordered table-striped">
 											<thead>

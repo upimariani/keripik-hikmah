@@ -42,7 +42,7 @@
 								$belum_bayar = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='0'")->row();
 								$menunggu = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='1'")->row();
 								$dikirim = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='2'")->row();
-								$selesai = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='3'")->row();
+								$selesai = $this->db->query("SELECT COUNT(id_tranbj) as jml FROM `transaksi_bj` WHERE status='3' AND stat_selesai='0'")->row();
 								?>
 								<li class="nav-item">
 									<a class="nav-link active btn-danger" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Pesanan Belum Bayar <span class="badge badge-warning"><?= $belum_bayar->jml ?></span></a>
@@ -125,6 +125,14 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
+									<?php
+									$data = array(
+										'stat_selesai' => '1'
+									);
+									$this->db->where('status=3');
+									$this->db->update('transaksi_bj', $data);
+
+									?>
 									<div class="card-body">
 										<table class="example1 table table-bordered table-striped">
 											<thead>

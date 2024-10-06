@@ -25,25 +25,32 @@ class cBbKeluar extends CI_Controller
 	}
 	public function create()
 	{
-		$data = array(
-			'id_bb' => $this->input->post('bb'),
-			'tgl_keluar' => $this->input->post('date'),
-			'qty_keluar' => $this->input->post('qty')
-		);
-		$this->mBbKeluar->insert($data);
+		$qty_tersedia = $this->input->post('qty_tersedia');
+		$qty = $this->input->post('qty');
+		if ($qty > $qty_tersedia) {
+			$this->session->set_flashdata('error', 'Mohon maaf stok tidak cukup! Silahkan melakukan pemesanan bahan baku kepada supplier.');
+			redirect('Gudang/cBbKeluar', 'refresh');
+		} else {
+			$data = array(
+				'id_bb' => $this->input->post('bb'),
+				'tgl_keluar' => $this->input->post('date'),
+				'qty_keluar' => $this->input->post('qty')
+			);
+			$this->mBbKeluar->insert($data);
 
-		//mengurangi stok bahan baku
-		$id_bb = $data['id_bb'];
-		$bb = $this->db->query("SELECT * FROM `bahan_baku` WHERE id_bb='" . $id_bb . "'")->row();
-		$dt_stok = array(
-			'stok' => $bb->stok - $data['qty_keluar']
-		);
-		$this->db->where('id_bb', $id_bb);
-		$this->db->update('bahan_baku', $dt_stok);
+			//mengurangi stok bahan baku
+			$id_bb = $data['id_bb'];
+			$bb = $this->db->query("SELECT * FROM `bahan_baku` WHERE id_bb='" . $id_bb . "'")->row();
+			$dt_stok = array(
+				'stok' => $bb->stok - $data['qty_keluar']
+			);
+			$this->db->where('id_bb', $id_bb);
+			$this->db->update('bahan_baku', $dt_stok);
 
 
-		$this->session->set_flashdata('success', 'Bahan baku keluar berhasil disimpan!');
-		redirect('Gudang/cBbKeluar');
+			$this->session->set_flashdata('success', 'Bahan baku keluar berhasil disimpan!');
+			redirect('Gudang/cBbKeluar');
+		}
 	}
 	public function update($id)
 	{

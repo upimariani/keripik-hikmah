@@ -23,11 +23,22 @@ class cKatalog extends CI_Controller
 	}
 	public function addcart()
 	{
+		//potongan harga
+		$harga = $this->input->post('harga');
+		$qty = $this->input->post('qty');
+
+
+		if ($qty >= 100) {
+			$hrg = $harga / 2;
+		} else {
+			$hrg = $harga;
+		}
+
 		$data = array(
 			'id' => $this->input->post('id'),
 			'name' => $this->input->post('nama'),
-			'price' => $this->input->post('harga'),
-			'qty' => '1',
+			'price' => $hrg,
+			'qty' => $qty,
 			'gambar' => $this->input->post('gambar'),
 			'stok' => $this->input->post('stok')
 		);

@@ -198,20 +198,22 @@
 								<thead>
 									<tr>
 										<th>Nama User</th>
-										<th>Level User</th>
+										<th>View Chat</th>
 
 									</tr>
 								</thead>
 								<tbody>
 									<?php
+
 									$user = $this->db->query("SELECT * FROM `user` WHERE lev_user='3'")->result();
 									foreach ($user as $key => $value) {
+										$dt_chat = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chat` WHERE id_user='" . $value->id_user . "' AND gudang_send='0' AND stat_read='0'")->row();
 									?>
 										<tr>
 											<td><?= $value->nama_user ?></td>
 											<td>
 												<a href="<?= base_url('Gudang/cDashboard/chat_supplier/' . $value->id_user) ?>">
-													<span class="badge badge-danger">View</span>
+													<span class="badge badge-danger"><i class="far fa-comment-dots"> <?= $dt_chat->jml ?></i></span>
 												</a>
 											</td>
 
