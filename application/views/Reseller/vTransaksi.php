@@ -70,6 +70,7 @@
 													<th>Total Pembayaran</th>
 													<th>Status</th>
 													<th>Produk</th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -117,7 +118,15 @@
 																}
 																?>
 															</td>
+															<td>
+																<a href="<?= base_url('Reseller/cTransaksi/delete/' . $value->id_tranbj) ?>" class="btn btn-danger">Hapus Pesanan</a>
+																<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default<?= $value->id_tranbj ?>">
+																	Perbaharui
+																</button>
+															</td>
 														</tr>
+
+														<!-- /.modal -->
 												<?php
 													}
 												}
@@ -351,3 +360,60 @@
 	</section>
 	<!-- /.content -->
 </div>
+<?php
+foreach ($transaksi as $key => $value) {
+	if ($value->status == '0') {
+?>
+		<div class="modal fade" id="modal-default<?= $value->id_tranbj ?>">
+			<div class="modal-dialog modal-lg">
+				<form action="<?= base_url('Reseller/cTransaksi/update/' . $value->id_tranbj) ?>" method="post">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Perbaharui Jumlah Pembelian</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table">
+								<tr>
+									<th>No</th>
+									<th>Nama Produk</th>
+									<th>Quantity</th>
+									<th>Subtotal</th>
+									<th>Perbaharui</th>
+								</tr>
+								<?php
+								$dt_produk = $this->db->query("SELECT * FROM `transaksi_bj` JOIN detail_transaksibj ON transaksi_bj.id_tranbj=detail_transaksibj.id_tranbj JOIN bahan_jadi ON bahan_jadi.id_bj=detail_transaksibj.id_bj WHERE transaksi_bj.id_tranbj='" . $value->id_tranbj . "'")->result();
+								foreach ($dt_produk as $key => $item) {
+								?>
+									<tr>
+										<td><?= $key + 1 ?>.</td>
+										<td><?= $item->nama_bj ?></td>
+										<td><?= $item->qty_bj ?></td>
+										<td>Rp. <?= number_format($item->qty_bj * $item->harga)  ?></td>
+										<td><input class="form-control" type="number" min='1' value="<?= $item->qty_bj ?>" name="qty<?= $key + 1 ?>"></td>
+									</tr>
+
+								<?php
+								}
+								?>
+
+							</table>
+
+
+						</div>
+						<div class="modal-footer justify-content-between">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-warning">Perbaharui Jumlah Pemesanan</button>
+						</div>
+					</div>
+				</form>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+<?php
+	}
+}
+?>

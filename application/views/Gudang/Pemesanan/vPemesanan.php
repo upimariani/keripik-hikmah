@@ -42,7 +42,7 @@
 							$belum_bayar = $this->db->query("SELECT COUNT(id_tranbb) as jml FROM `transaksi_bb` WHERE status='0'")->row();
 							$menunggu = $this->db->query("SELECT COUNT(id_tranbb) as jml FROM `transaksi_bb` WHERE status='1'")->row();
 							$dikirim = $this->db->query("SELECT COUNT(id_tranbb) as jml FROM `transaksi_bb` WHERE status='2'")->row();
-							$selesai = $this->db->query("SELECT COUNT(id_tranbb) as jml FROM `transaksi_bb` WHERE status='3'")->row();
+							$selesai = $this->db->query("SELECT COUNT(id_tranbb) as jml FROM `transaksi_bb` WHERE status='3' AND stat_sel='0'")->row();
 							?>
 							<ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
 								<li class="nav-item">
@@ -269,6 +269,7 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
+
 									<div class="card-body">
 										<table class="example1 table table-bordered table-striped">
 											<thead>
@@ -285,6 +286,12 @@
 												<?php
 												foreach ($pemesanan as $key => $value) {
 													if ($value->status == '3') {
+														$data = array(
+															'stat_sel' => '1'
+														);
+
+														$this->db->where('status=3');
+														$this->db->update('transaksi_bb', $data);
 												?>
 														<tr>
 															<td><?= $value->nama_user ?></td>
@@ -292,11 +299,6 @@
 															<td>Rp. <?= number_format($value->total_pembayaran)  ?></td>
 															<td><?php if ($value->status == '0') {
 																?>
-																	<?= form_open_multipart('Gudang/cPemesanan/bayar/' . $value->id_tranbb) ?>
-																	<span class="badge badge-danger">Belum Bayar</span>
-																	<input class="form-control" name="gambar" type="file" required>
-																	<button type="submit" class="btn btn-danger mt-2"> <i class="far fa-credit-card"></i> Payment</button>
-																	</form>
 																<?php
 																} else if ($value->status == '1') {
 																?>

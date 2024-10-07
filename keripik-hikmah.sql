@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2024 at 12:15 PM
+-- Generation Time: Oct 07, 2024 at 05:53 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -192,15 +192,13 @@ CREATE TABLE `detail_transaksibj` (
 INSERT INTO `detail_transaksibj` (`id_detailbj`, `id_tranbj`, `id_bj`, `qty_bj`) VALUES
 (1, 1, 2, 1),
 (2, 2, 2, 1),
-(3, 3, 1, 1),
-(4, 3, 5, 1),
+(3, 3, 5, 1000),
+(4, 3, 5, 7),
 (5, 4, 2, 2),
-(6, 4, 3, 1),
+(6, 4, 1, 2),
 (7, 4, 8, 1),
 (8, 4, 9, 1),
-(9, 5, 1, 1),
-(10, 6, 1, 100),
-(11, 6, 2, 20);
+(9, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -239,19 +237,20 @@ CREATE TABLE `transaksi_bb` (
   `status` int(11) NOT NULL,
   `pembayaran` int(11) NOT NULL,
   `time_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `bukti_bayar` text NOT NULL
+  `bukti_bayar` text NOT NULL,
+  `stat_sel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi_bb`
 --
 
-INSERT INTO `transaksi_bb` (`id_tranbb`, `id_user`, `tgl_transaksi`, `total_pembayaran`, `status`, `pembayaran`, `time_update`, `bukti_bayar`) VALUES
-(1, 4, '2024-09-23', 30000, 3, 1, '2024-09-24 11:49:00', 'download.jpeg'),
-(2, 5, '2024-09-25', 200000, 0, 0, '2024-10-04 03:53:33', '0'),
-(3, 4, '2024-09-25', 200000, 0, 0, '2024-09-25 09:07:14', '0'),
-(4, 4, '2024-09-27', 160000, 1, 1, '2024-09-27 01:31:09', 'download1.jpeg'),
-(5, 4, '2024-10-01', 75000, 3, 1, '2024-10-01 08:53:14', 'download2.jpeg');
+INSERT INTO `transaksi_bb` (`id_tranbb`, `id_user`, `tgl_transaksi`, `total_pembayaran`, `status`, `pembayaran`, `time_update`, `bukti_bayar`, `stat_sel`) VALUES
+(1, 4, '2024-09-23', 30000, 3, 1, '2024-10-07 15:13:36', 'download.jpeg', 1),
+(2, 5, '2024-09-25', 200000, 0, 0, '2024-10-04 03:53:33', '0', 0),
+(3, 4, '2024-09-25', 200000, 0, 0, '2024-09-25 09:07:14', '0', 0),
+(4, 4, '2024-09-27', 160000, 2, 1, '2024-10-07 04:39:36', 'download1.jpeg', 0),
+(5, 4, '2024-10-01', 75000, 3, 1, '2024-10-07 15:06:18', 'download2.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -278,10 +277,9 @@ CREATE TABLE `transaksi_bj` (
 INSERT INTO `transaksi_bj` (`id_tranbj`, `id_reseller`, `tgl_transaksi`, `total_pembayaran`, `status`, `stat_selesai`, `payment`, `alamat_pengiriman`, `stat_res`) VALUES
 (1, 1, '2024-09-24', 10000, 3, 1, 'download.jpeg', '', 1),
 (2, 1, '2024-09-25', 10000, 3, 1, 'download1.jpeg', '', 1),
-(3, 1, '2024-09-27', 22000, 0, 0, '0', '', 0),
+(3, 1, '2024-09-27', 6084000, 0, 0, '0', '', 0),
 (4, 2, '2024-10-01', 50000, 3, 1, 'download2.jpeg', '', 0),
-(5, 2, '2024-10-01', 10000, 0, 0, '0', '', 0),
-(6, 1, '2024-10-06', 700000, 0, 0, '0', '', 0);
+(5, 2, '2024-10-01', 10000, 0, 0, '0', '', 0);
 
 -- --------------------------------------------------------
 
