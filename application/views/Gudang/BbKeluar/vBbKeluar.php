@@ -7,7 +7,7 @@
 				<div class="col-sm-6">
 					<h1>Bahan Baku Keluar</h1>
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal-default">
-						<i class="fa fa-bell"></i>Tambah Pemesanan Bahan Baku
+						<i class="fa fa-bell"></i>Tambah Bahan Baku Keluar
 					</button>
 					<div class="modal fade" id="modal-default">
 						<div class="modal-dialog">
@@ -20,6 +20,7 @@
 										</button>
 									</div>
 									<div class="modal-body">
+
 										<div class="form-group">
 											<label for="exampleInputEmail1">Nama Bahan Baku</label>
 											<select class="form-control" name="bb" id="bb_keluar" required>
@@ -28,7 +29,7 @@
 												foreach ($bb as $key => $value) {
 													if ($value->stok != '0') {
 												?>
-														<option data-stok="<?= $value->stok ?>" value="<?= $value->id_bb ?>"><?= $value->nama_bb ?> | Stok. <?= $value->stok ?></option>
+														<option data-keterangan="/ <?= $value->keterangan ?>" data-stok="<?= $value->stok ?>" value="<?= $value->id_bb ?>"><?= $value->nama_bb ?> | Stok. <?= $value->stok ?></option>
 												<?php
 													}
 												}
@@ -47,9 +48,19 @@
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">Quantity</label>
-											<input type="number" name="qty" class="form-control" required>
+											<div class="row">
+												<div class="col-lg-9">
+
+													<input type="number" name="qty" class="form-control" required>
+
+												</div>
+												<div class="col-lg-3">
+													<p class="keterangan"></p>
+												</div>
+											</div>
 
 										</div>
+
 									</div>
 									<div class="modal-footer justify-content-between">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,7 +130,7 @@
 										<tr>
 											<td><?= $value->tgl_keluar ?></td>
 											<td><?= $value->nama_bb ?></td>
-											<td><?= $value->qty_keluar ?></td>
+											<td><?= $value->qty_keluar ?> <?= $value->keterangan ?></td>
 											<td>
 												<div class="btn-group">
 													<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#perbaharui<?= $value->id_bb_keluar ?>">
@@ -164,17 +175,18 @@ foreach ($bb_keluar as $key => $value) {
 						</button>
 					</div>
 					<div class="modal-body">
+
 						<div class="form-group">
 							<label for="exampleInputEmail1">Nama Bahan Baku</label>
-							<select class="form-control" name="bb" required>
+							<select class="form-control" name="bb" required id="bb_keluar_edit">
 								<option value="">Pilih Bahan Baku</option>
 								<?php
 								foreach ($bb as $key => $item) {
 									if ($item->stok != '0') {
 								?>
-										<option data-stok="<?= $item->stok ?>" value="<?= $item->id_bb ?>" <?php if ($value->id_bb == $item->id_bb) {
-																												echo 'selected';
-																											} ?>><?= $item->nama_bb ?> | Stok. <?= $item->stok ?></option>
+										<option data-keterangan="/ <?= $item->keterangan ?>" data-stok="<?= $item->stok ?>" value="<?= $item->id_bb ?>" <?php if ($value->id_bb == $item->id_bb) {
+																																							echo 'selected';
+																																						} ?>><?= $item->nama_bb ?> | Stok. <?= $item->stok ?></option>
 								<?php
 									}
 								}
@@ -188,9 +200,19 @@ foreach ($bb_keluar as $key => $value) {
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Quantity</label>
-							<input type="number" name="qty" value="<?= $value->qty_keluar ?>" class="form-control" required>
+							<div class="row">
+								<div class="col-lg-9">
+
+									<input type="number" name="qty" value="<?= $value->qty_keluar ?>" class="form-control" required>
+
+								</div>
+								<div class="col-lg-3">
+									<p class="keterangan">/ <?= $value->keterangan ?></p>
+								</div>
+							</div>
 
 						</div>
+
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

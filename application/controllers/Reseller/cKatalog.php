@@ -26,25 +26,29 @@ class cKatalog extends CI_Controller
 		//potongan harga
 		$harga = $this->input->post('harga');
 		$qty = $this->input->post('qty');
+		$stok = $this->input->post('stok');
 
-
-		if ($qty >= 100) {
-			$hrg = $harga / 2;
+		if ($qty > $stok) {
+			$this->session->set_flashdata('error', 'Maaf STok Tidak Mencukupi, Silahkan Hubungi Kami Untuk Pembelian Diatas Atas Stok!');
+			redirect('Reseller/cKatalog');
 		} else {
-			$hrg = $harga;
+			if ($qty >= 100) {
+				$hrg = $harga - (0.05 * $harga);
+			} else {
+				$hrg = $harga;
+			}
+			$data = array(
+				'id' => $this->input->post('id'),
+				'name' => $this->input->post('nama'),
+				'price' => $hrg,
+				'qty' => $qty,
+				'gambar' => $this->input->post('gambar'),
+				'stok' => $this->input->post('stok')
+			);
+			$this->cart->insert($data);
+			$this->session->set_flashdata('success', 'Produk berhasil masuk keranjang!');
+			redirect('Reseller/cKatalog');
 		}
-
-		$data = array(
-			'id' => $this->input->post('id'),
-			'name' => $this->input->post('nama'),
-			'price' => $hrg,
-			'qty' => $qty,
-			'gambar' => $this->input->post('gambar'),
-			'stok' => $this->input->post('stok')
-		);
-		$this->cart->insert($data);
-		$this->session->set_flashdata('success', 'Produk berhasil masuk keranjang!');
-		redirect('Reseller/cKatalog');
 	}
 	public function delete($rowid)
 	{

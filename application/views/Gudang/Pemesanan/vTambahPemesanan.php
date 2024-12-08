@@ -84,7 +84,15 @@
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Quantity</label>
-									<input type="text" name="qty" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Quantity Pemesanan">
+									<div class="row">
+										<div class="col-lg-10">
+											<input type="text" name="qty" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Quantity Pemesanan">
+										</div>
+										<div class="col-lg-2">
+											<strong class="keterangan"></strong>
+										</div>
+									</div>
+
 									<?= form_error('qty', '<small class="text-danger">', '</small>') ?>
 								</div>
 
@@ -112,7 +120,7 @@
 				if ($this->cart->contents()) {
 				?>
 					<div class="col-md-7">
-						<div class="card">
+						<div class="card card-info">
 							<div class="card-header">
 								<h3 class="card-title">Keranjang Pemesanan Bahan Baku</h3>
 							</div>
@@ -131,6 +139,7 @@
 										</thead>
 										<tbody>
 											<?php foreach ($this->cart->contents() as $key => $value) {
+												$supplier = $value['id_user'];
 											?>
 												<tr>
 													<td><?= $value['name'] ?></td>
@@ -146,8 +155,10 @@
 										</tbody>
 										<tfoot>
 											<tr>
-												<th>Supplier</th>
-												<th><select class="form-control" name="supplier" required>
+												<th></th>
+												<th>
+													<input type="hidden" name="supplier" value="<?= $supplier ?>">
+													<!-- <select class="form-control" name="supplier" required>
 														<option value="">Pilih Supplier</option>
 														<?php
 														foreach ($user as $key => $value) {
@@ -158,7 +169,8 @@
 															}
 														}
 														?>
-													</select></th>
+													</select> -->
+												</th>
 												<th>Total</th>
 												<th>Rp. <?= number_format($this->cart->total()) ?></th>
 												<th><button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i> Selesai</button></th>

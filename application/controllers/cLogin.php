@@ -74,6 +74,10 @@ class cLogin extends CI_Controller
 		$this->session->set_flashdata('success', 'Reseller berhasil registrasi! Silahkan login!');
 		redirect('cLogin');
 	}
+	public function coba()
+	{
+		$this->load->view('vCoba');
+	}
 }
 
 /* End of file cLogin.php */

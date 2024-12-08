@@ -52,6 +52,7 @@ class cPemesanan extends CI_Controller
 				'price' => $this->input->post('harga'),
 				'qty' => $this->input->post('qty'),
 				'stok' => $this->input->post('stok'),
+				'id_user' => $this->input->post('supplier')
 			);
 			$this->cart->insert($data);
 			$this->session->set_flashdata('success', 'Bahan Baku berhasil ditambahkan di keranjang');
@@ -131,8 +132,6 @@ class cPemesanan extends CI_Controller
 			$this->db->where('id_bb', $value->id_bb);
 			$this->db->update('bahan_baku', $stok);
 		}
-
-
 		$data = array(
 			'status' => '3'
 		);

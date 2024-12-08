@@ -9,19 +9,27 @@ class cBbKeluar extends CI_Controller
 		parent::__construct();
 		$this->load->model('mBbKeluar');
 		$this->load->model('mBahanBaku');
+		$this->load->model('mUser');
 	}
 
 	public function index()
 	{
 		$data = array(
 			'bb_keluar' => $this->mBbKeluar->select(),
-			'bb' => $this->mBahanBaku->select()
+			'bb' => $this->mBahanBaku->select(),
+			'supplier' => $this->mUser->select()
 		);
 		$this->load->view('Gudang/Layouts/head');
 		$this->load->view('Gudang/Layouts/navbar');
 		$this->load->view('Gudang/Layouts/aside');
 		$this->load->view('Gudang/BbKeluar/vBbKeluar', $data);
 		$this->load->view('Gudang/Layouts/footer');
+	}
+	public function get_bahanbaku()
+	{
+		$id_supplier = $this->input->post('id');
+		$data = $this->db->query("SELECT * FROM `bahan_baku` WHERE nm_supplier='" . $id_supplier . "'")->result();
+		echo json_encode($data);
 	}
 	public function create()
 	{

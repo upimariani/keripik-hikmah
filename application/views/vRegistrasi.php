@@ -14,14 +14,19 @@
 	<link rel="stylesheet" href="<?= base_url('asset/Admin/') ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?= base_url('asset/Admin/') ?>dist/css/adminlte.min.css">
+	<style>
+		body {
+			background-image: url("http://localhost/keripik-hikmah/asset/logo3.jpg");
+		}
+	</style>
 </head>
 
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<!-- /.login-logo -->
-		<div class="card card-outline card-primary">
+		<div class="card card-outline card-success">
 			<div class="card-header text-center">
-				<a href="<?= base_url('asset/Admin/') ?>index2.html" class="h1"><b>KERIPIK</b>PEDAS HIKMAH</a>
+				<img style="width: 300px;" src="<?= base_url('asset/logo2.jpg') ?>">
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Registrasi Reseller</p>
@@ -86,7 +91,7 @@
 					</div>
 					Apakah reseller sudah memiliki akun? <a class="text-danger" href="<?= base_url('cLogin') ?>">Login Disini!</a>
 					<div class="social-auth-links text-center mt-2 mb-3">
-						<button type="submit" class="btn btn-block btn-primary">
+						<button type="submit" class="btn btn-block btn-success">
 							<i class="fas fa-sign-in-alt"></i> Registrasi
 						</button>
 
@@ -99,6 +104,7 @@
 		</div>
 		<!-- /.card -->
 	</div>
+
 	<!-- /.login-box -->
 
 	<!-- jQuery -->

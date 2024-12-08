@@ -88,6 +88,19 @@
 		$(".stok").html($(this).find(':selected').attr('data-stok'));
 		$(".stok").val($(this).find(':selected').attr('data-stok'));
 
+		$(".keterangan").html($(this).find(':selected').attr('data-keterangan'));
+		$(".keterangan").val($(this).find(':selected').attr('data-keterangan'));
+
+	});
+</script>
+<script>
+	console.log = function() {}
+	$("#bb_keluar_edit").on('change', function() {
+
+
+		$(".keterangan").html($(this).find(':selected').attr('data-keterangan'));
+		$(".keterangan").val($(this).find(':selected').attr('data-keterangan'));
+
 	});
 </script>
 <script>
@@ -103,11 +116,14 @@
 		$(".stok").html($(this).find(':selected').attr('data-stok'));
 		$(".stok").val($(this).find(':selected').attr('data-stok'));
 
+		$(".keterangan").html($(this).find(':selected').attr('data-keterangan'));
+		$(".keterangan").val($(this).find(':selected').attr('data-keterangan'));
+
 	});
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		console.log("hai!");
 		$('#supplier').change(function() {
 			var id = $(this).val();
 			$.ajax({
@@ -121,9 +137,11 @@
 				success: function(data) {
 
 					var html = '';
+					html = '<option value="">Pilih Bahan Baku</option>';
 					var i;
 					for (i = 0; i < data.length; i++) {
-						html += '<option data-nama=' + data[i].nama_bb + ' data-harga=' + data[i].harga + ' data-stok=' + data[i].stok + ' value=' + data[i].id_bb + '>' + data[i].nama_bb + '</option>';
+
+						html += '<option data-keterangan= /' + data[i].keterangan + ' data-nama=' + data[i].nama_bb + ' data-harga=' + data[i].harga + ' data-stok=' + data[i].stok + ' value=' + data[i].id_bb + '>' + data[i].nama_bb + '</option>';
 					}
 					$('#bahanbaku').html(html);
 
@@ -135,6 +153,7 @@
 
 	});
 </script>
+
 </body>
 
 </html>

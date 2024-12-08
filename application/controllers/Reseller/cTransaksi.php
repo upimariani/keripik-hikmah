@@ -78,7 +78,7 @@ class cTransaksi extends CI_Controller
 			$qty = $this->input->post('qty' . $no++);
 
 			if ($qty >= 1000) {
-				$hrg = $value->harga / 2;
+				$hrg = $value->harga - (0.05 * $value->harga);
 			} else {
 				$hrg = $value->harga;
 			}

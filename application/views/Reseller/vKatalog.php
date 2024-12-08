@@ -6,7 +6,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1>Katalog Produk<strong> Keripik Pedas Hikmah</strong></h1>
-					<small class="text-danger">Jika pembelian produk lebih dari 100 kg maka, harga dikurangi 50% dari harga asli! Dipotong dari total pembelian</small>
+					<p class="text-danger">Jika pembelian produk lebih dari 100 kg maka, harga dikurangi <strong>5%</strong> dari harga asli! Dipotong dari total pembelian</p>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -21,6 +21,15 @@
 					<h5>Sukses!</h5>
 
 					<p><?= $this->session->userdata('success') ?></p>
+				</div>
+			<?php
+			} ?>
+			<?php if ($this->session->userdata('error')) {
+			?>
+				<div class="callout callout-danger">
+					<h5>Gagal!</h5>
+
+					<p><?= $this->session->userdata('error') ?></p>
 				</div>
 			<?php
 			} ?>

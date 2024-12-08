@@ -3,11 +3,11 @@
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="<?= base_url('asset/Admin/') ?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+			<img class="animation__wobble" src="<?= base_url('asset/logo2.jpg') ?>" alt="AdminLTELogo" width="200px">
 		</div>
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-success">
+		<nav class="main-header navbar navbar-expand navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
